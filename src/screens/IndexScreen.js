@@ -7,7 +7,6 @@ const IndexScreen = ({ navigation }) => {
     const { state, addBlogPost, deleteBlogPost } = useContext(Context);
     return (
         <View>
-            <Button title="Add Posts" onPress={addBlogPost} />
             <FlatList 
                 data={state} 
                 keyExtractor={(blogPost) =>  blogPost.title}
