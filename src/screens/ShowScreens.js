@@ -4,13 +4,13 @@ import { Context } from '../context/BlogContext';
 import { EvilIcons } from '@expo/vector-icons';
 
 const ShowScreen = ({ navigation }) => {
-    console.log(navigation.getParam('id'))
     const { state } = useContext(Context);
     const blogPost = state.find((post) => post.id === navigation.getParam('id'))
     return (
         <View>
             <Text>{blogPost.title}</Text>
             <Text>{blogPost.content}</Text>
+            <Text>{blogPost.id}</Text>
         </View>
     )
 };
@@ -18,7 +18,7 @@ const ShowScreen = ({ navigation }) => {
 ShowScreen.navigationOptions = ({ navigation }) => {
     return {
         headerRight: () => (
-            <TouchableOpacity onPress="() => navigation.navigate('Edit')">
+            <TouchableOpacity onPress={() => navigation.navigate('Edit', { id: navigation.getParam('id') })}>
                 <EvilIcons style={styles.icon} name="pencil" size={35} />
             </TouchableOpacity>
         )
